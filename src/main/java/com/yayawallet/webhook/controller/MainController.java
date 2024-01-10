@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+import reactor.util.function.Tuple2;
+
+import java.util.concurrent.CompletableFuture;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,14 +22,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
     private final NotificationService notificationService;
 
-
     @PostMapping("/process")
-    ApiResponse processNotification(@RequestBody WebHookRequest notifyRequest) {
+    Mono<ApiResponse> processNotification(@RequestBody WebHookRequest notifyRequest) {
 
         log.info("Transaction notification {} | for customer {}", notifyRequest.getId(), notifyRequest.getAccount_name());
 
-        return notificationService.processNotification(notifyRequest);
+        Mono<ApiResponse> immediateResponse = Mono.just(ApiResponse.builder()
+                .id(notifyRequest.getId())
+                .responseDesc("Successfully processed!")
+                .responseCode("0")
+                .build());
+        return immediateResponse.flatMap(ir ->
+                Mono.fromFuture(() -> notificationProcessing(notifyRequest))
+                        .map(rsp -> rsp)
+        );
 
+    }
+
+    private CompletableFuture<ApiResponse> notificationProcessing(WebHookRequest rqst) {
+        return CompletableFuture.completedFuture(notificationService.processNotification(rqst));
     }
 
 

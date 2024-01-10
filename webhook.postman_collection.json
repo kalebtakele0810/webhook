@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "52ff97a0-cc43-4f56-ac5b-30b83adda6ca",
+		"name": "webhook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21405822",
+		"_collection_link": "https://winter-zodiac-347617.postman.co/workspace/ya-ya~57f3e714-42eb-46f7-ad40-d69bc4d616dd/collection/21405822-52ff97a0-cc43-4f56-ac5b-30b83adda6ca?action=share&source=collection_link&creator=21405822"
+	},
+	"item": [
+		{
+			"name": "Webhook request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"1dd2764e-3a79-4548-ae36-97e4a18ebf81\",\r\n  \"amount\": 100,\r\n  \"currency\": \"ETB\",\r\n  \"created_at_time\": 1673381836,\r\n  \"timestamp\": 1701272333,\r\n  \"cause\": \"Testing\",\r\n  \"full_name\": \"Abebe Kebede\",\r\n  \"account_name\": \"abebekebede1\",\r\n  \"invoice_url\": \"https://yayawallet.com/en/invoice/xxxx\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/notify/process",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"notify",
+						"process"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"1dd2854e-3a79-4548-ae36-97e4a18ebf81\",\r\n  \"amount\": 100,\r\n  \"currency\": \"ETB\",\r\n  \"created_at_time\": 1673381836,\r\n  \"timestamp\": 1701272333,\r\n  \"cause\": \"Testing\",\r\n  \"full_name\": \"Abebe Kebede\",\r\n  \"account_name\": \"abebekebede1\",\r\n  \"invoice_url\": \"https://yayawallet.com/en/invoice/xxxx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/notify/process",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"notify",
+								"process"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Jan 2024 11:15:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1dd2854e-3a79-4548-ae36-97e4a18ebf81\",\n    \"ResponseCode\": \"0\",\n    \"ResponseDesc\": \"Successfully processed!\"\n}"
+				}
+			]
+		}
+	]
+}
